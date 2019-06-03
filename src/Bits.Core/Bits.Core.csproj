@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
+    <Authors>Modnite</Authors>
+    <Company>Modnite</Company>
+    <Product>Bits.Core</Product>
+    <Copyright>Copyright © 2019 Modnite</Copyright>
   </PropertyGroup>
 
 </Project>

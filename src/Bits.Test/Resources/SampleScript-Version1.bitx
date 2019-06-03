@@ -1,0 +1,111 @@
+﻿// Sample Bit-X Script (Version 1)
+
+/*
+ * Block comment
+ */
+
+// Version declaration (must be the first statement in a Bit-X script file)
+version 1					// Integer literal
+
+FILE_MAGIC: 0xDEAFCAFE		// Hexadecimal literal
+
+// string literal
+COMMON_DIR: "/libs/common"
+
+// string literal with escaped quotes
+URL: "\"pie\""
+
+// string literal with double forward slash
+REPO_URL: "https://github.com/ModniteNet/Bits"
+
+FLAGS: 0b0100				// Binary literal
+ENABLE_FEATURE: true		// Boolean literal (true)
+ENABLE_SOMETHING: false	    // Boolean literal (false)
+
+// Open declaration
+open COMMON_DIR
+
+// Enumeration
+enum ItemType
+{
+	Weapon
+	Armor: 1
+	Consumable: 2
+	Max: Consumable
+}
+
+// 'main' indicates that this is the starting point when parsing a file using this Bit-X script
+block main FileStructure
+{
+	// enforce conditions using the 'check' keyword
+	check (__length >= 4)
+
+	// This is a scoped variable, only stuff in FileStructure and all nested blocks have access
+	LocalVariable: 0
+
+	/*
+	 * This is a property declaration. When the stream reader gets to this point, it will read 32 bits from the
+	 * stream and store it in a variable called Magic.
+	 */
+	uint32 Magic
+	check (Magic = FILE_MAGIC)	// this accesses the global variable we set earlier
+
+	/*
+	 * Use the 'as' keyword to cast a variable to an enum value
+	 * This will read 32 bits from the stream and export the variable as an ItemType type.
+	 */
+	uint32 ItemType as ItemType
+
+	// You can declare blocks that's only accessible in the current scope
+	block HeaderBlock
+	{
+		int32 Size
+		uint16 ItemVersion
+
+		if (ItemType = ItemType::Weapon)
+		{
+			// Scoped enum
+			enum bitfield3 ItemFlags
+			{
+				None
+				Destroyed		// has implicit value of 1
+				CanBeDropped	// has implicit value of 2
+				CanBeTraded		// has implicit value of 4
+			}
+
+			ItemFlags Flags
+
+			!bit IsRare			  // negate bit value
+			int32 BaseDamage
+			int32 CriticalChance
+			int32 CriticalDamage
+			uint8[256] Name as utf8z  // read an array of bytes, and cast it to a null-terminated UTF-8 string
+
+			// Call a function
+			Name: string_trim_end(Name)
+
+			// You can even conditionally import schemas
+			open "/lib/WeaponTypes"
+		}
+		else if (ItemType = ItemType::Armor)
+		{
+			uint12 Something
+			SomeValue: 0 as int4
+
+			if (Something ≤ 10) { Value: "A" }
+			if (Something < 15) { Value: Value + "B" }
+			if (Something > 30) { Value: "C" }
+			if (Something ≥ 50) { Value: "D" }
+			if (Something ≠ 25) { Value: "E" }
+			
+			SomeValue:++	// increment by 1
+			SomeValue:--	// decrement by 1
+			SomeValue: SomeValue/2
+			SomeValue: SomeValue * 4
+		}
+
+		uint32 IsLocked as bool
+	}
+
+	HeaderBlock Header
+}
