@@ -9,6 +9,9 @@ namespace Bits.Test.BitX
         public void LoadGrammar_Version1()
         {
             var grammar = new Grammar(version: 1);
+
+            Assert.NotEmpty(grammar);
+            Assert.True(grammar.ContainsKey("<Grammar>"));
         }
     }
 }

@@ -2,7 +2,10 @@
 
 namespace Bits.Core.BitX.Parsing
 {
-    public class ParseException : Exception
+    /// <summary>
+    /// Represents an error that occurred during parsing.
+    /// </summary>
+    public sealed class ParseException : Exception
     {
         public ParseException(string errorCode, string file, int line, int column)
             : base($"Parse Error in file {file} at line {line} col {column} ({errorCode}): {GetErrorMessageFromCode(errorCode)}")
@@ -12,6 +15,12 @@ namespace Bits.Core.BitX.Parsing
             Column = column;
         }
 
+        public string File { get; }
+
+        public int Line { get; }
+
+        public int Column { get; }
+
         private static string GetErrorMessageFromCode(string errorCode)
         {
             if (Strings.ErrorMessages.TryGetValue(errorCode, out string message))
@@ -19,11 +28,5 @@ namespace Bits.Core.BitX.Parsing
 
             return $"Missing error description in {nameof(Strings.ErrorMessages)} table";
         }
-
-        public string File { get; }
-
-        public int Line { get; }
-
-        public int Column { get; }
     }
 }

@@ -7,7 +7,7 @@ using System.Reflection;
 namespace Bits.Core.BitX.Parsing
 {
     /// <summary>
-    /// Represents a formal grammar for the Bit-X language.
+    /// Represents the formal grammar of the Bit-X language.
     /// </summary>
     public sealed class Grammar : Dictionary<string, Rule>
     {
