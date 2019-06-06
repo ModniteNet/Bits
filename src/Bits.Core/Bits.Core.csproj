@@ -8,4 +8,12 @@
     <Copyright>Copyright © 2019 Modnite</Copyright>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="BitX\Parsing\Grammars\grammar-v1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="BitX\Parsing\Grammars\grammar-v1" />
+  </ItemGroup>
+
 </Project>

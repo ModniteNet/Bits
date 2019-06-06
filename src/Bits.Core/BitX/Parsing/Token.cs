@@ -1,4 +1,4 @@
-﻿namespace Bits.Core.BitX.Tokenization
+﻿namespace Bits.Core.BitX.Parsing
 {
     /// <summary>
     /// Represents a token in a Bit-X script.

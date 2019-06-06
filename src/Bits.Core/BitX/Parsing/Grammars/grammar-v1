@@ -1,0 +1,28 @@
+﻿###############################################################
+#                                                             #
+#               ██████╗ ██╗████████╗  ██╗  ██╗                #
+#               ██╔══██╗██║╚══██╔══╝  ╚██╗██╔╝                #
+#               ██████╔╝██║   ██║█████╗╚███╔╝                 #
+#               ██╔══██╗██║   ██║╚════╝██╔██╗                 #
+#               ██████╔╝██║   ██║     ██╔╝ ██╗                #
+#               ╚═════╝ ╚═╝   ╚═╝     ╚═╝  ╚═╝                #
+#                     Version 1 Grammar                       #
+#                                                             #
+###############################################################
+
+<Grammar> ::= <VersionDeclaration> | <Body>
+<BlockBody> ::= | <VariableAssignment> | <OpenStatement> | <EnumDeclaration> | <DataTypeDeclaration> | <BlockStatement>
+<BlockStatement> ::= BlockKeyword Identifier OpenCurlyBraceSymbol <BlockBody> CloseCurlyBraceSymbol
+<Body> ::= | <VariableAssignment> | <OpenStatement> | <EnumDeclaration> | <BlockStatement>
+<DataType> ::= SignedIntegerTypeKeyword | UnsignedIntegerTypeKeyword | BitTypeKeyword | Identifier
+<DataTypeArray> ::= <DataType> OpenBracketSymbol IntegerLiteral CloseBracketSymbol
+<DataTypeDeclaration> ::= <DataType> Identifier | <DataType> Identifier AsKeyword Identifier | <DataTypeArray> Identifier | <DataTypeArray> Identifier AsKeyword Identifier
+<EnumBody> ::= | <EnumBody> Identifier | <EnumBody> Identifier ColonSymbol <Value>
+<EnumDeclaration> ::= EnumKeyword Identifier OpenCurlyBraceSymbol <EnumBody> CloseCurlyBraceSymbol
+<FunctionArgument> ::= | <FunctionArgument> <Value>
+<FunctionCall> ::= Identifier OpenParenthesesSymbol <FunctionArgument> CloseParenthesesSymbol
+<MainBlockStatement> ::= BlockKeyword MainKeyword Identifier OpenCurlyBraceSymbol <Body> CloseCurlyBraceSymbol
+<OpenStatement> ::= OpenKeyword Identifier | OpenKeyword StringLiteral
+<Value> ::= StringLiteral | HexadecimalLiteral | IntegerLiteral | BinaryLiteral | TrueLiteral | FalseLiteral | Identifier
+<VariableAssignment> ::= Identifier ColonSymbol <Value>
+<VersionDeclaration> ::= VersionKeyword IntegerLiteral

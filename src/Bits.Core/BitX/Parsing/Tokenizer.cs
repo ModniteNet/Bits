@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace Bits.Core.BitX.Tokenization
+namespace Bits.Core.BitX.Parsing
 {
     /// <summary>
     /// Provides a <see cref="Tokenize(string)"/> method to tokenize Bit-X scripts.
