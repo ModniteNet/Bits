@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.489
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bits.Core", "Bits.Core\Bits.Core.csproj", "{B82498E7-5996-4B03-8DCE-E0896AFDEA7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bits.Test", "Bits.Test\Bits.Test.csproj", "{A8D94BED-3CD8-45AA-BBB3-90CF4E1F5487}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bits.Test", "Bits.Test\Bits.Test.csproj", "{A8D94BED-3CD8-45AA-BBB3-90CF4E1F5487}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

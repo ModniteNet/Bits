@@ -10,7 +10,7 @@ namespace Bits.Test.BitX
     public class TokenizerTests
     {
         /// <summary>
-        /// Passes only when each token type is detected in the sample script.
+        /// Pass when each token type is detected in the sample script.
         /// </summary>
         [Fact]
         public void TokenizeScript_Version1()

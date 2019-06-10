@@ -159,7 +159,7 @@ namespace Bits.Core.BitX.Parsing
                 {
                     (int line, int column) = ConvertIndexToLineAndColumn(script, index);
                     string value = script.Substring(tokenStart, tokenLength);
-                    return new Token(tokenType ?? GetTokenTypeFromValue(value), value, line, column);
+                    return new Token(tokenType ?? GetTokenTypeFromValue(value), value, line, column - value.Length);
                 }
 
                 if (literalRegions.ContainsKey(index))
